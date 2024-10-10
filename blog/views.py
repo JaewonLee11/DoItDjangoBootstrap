@@ -18,9 +18,10 @@ def single_post_page(request, pk):
         request,
         'blog/single_post_page.html',
         {
-            'post' : post
+            'post' : post,
         }
 
     )
+
 
 # Create your views here.
