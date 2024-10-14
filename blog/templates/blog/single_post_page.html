@@ -8,7 +8,7 @@
         <meta name="author" content="" />
         <title>{{ post.title }} - Blog</title>
         <link href="{% static 'blog/css/styles.css' %}" rel="stylesheet" media="screen">
-    <script src="https://kit.fontawesome.com/c39fb82a4a.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/c39fb82a4a.js" crossorigin="anonymous"></script>
     </head>
 <body>
         <!-- Responsive navbar-->
@@ -21,7 +21,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./">Home</a>
+              <a class="nav-link active" aria-current="page" href="./blog/">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="C:/github/DoItDjangoBootstrap/single_pages/templates/single_pages/landing.html">Blog</a>
@@ -70,6 +70,25 @@
                         {% endif %}
                         <!-- Post content-->
                         <p>{{post.content}}</p>
+
+                        {% if post.file_upload %}
+                        <button type="button" class="btn btn-primary" href="{{ post.file_upload.url">Download:
+                        {% if post.get_file_ext == 'csv' %}
+                            <i class="fa-solid fa-file-csv"></i>
+                        {% elif post.get_file_ext == 'txt' %}
+                            <i class="fa-solid fa-file-lines"></i>
+                        {% elif post.get_file_ext == 'doc' or post.get_file_ext == 'docx' %}
+                            <i class="fa-solid fa-file-word"></i>
+                        {% elif post.get_file_ext == 'xls' or post.get_file_ext == 'xlsx' %}
+                            <i class="fa-solid fa-file-excel"></i>
+                        {% elif post.get_file_ext == 'pdf' %}
+                            <i class="fa-solid fa-file-pdf"></i>
+                        {% else %}
+                            <i class="fa-solid fa-file"></i>
+                        {% endif%}
+                        {{ post.get_file_name }}</button>
+                        {% endif %}
+
                     </article>
                     <!-- Comments section-->
                     <section class="mb-5">
