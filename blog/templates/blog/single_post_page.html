@@ -63,7 +63,11 @@
                             <div class="text-muted fst-italic mb-2">{{post.created_at}}</div>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="..." /></figure>
+                        {% if post.head_image %}
+                            <a href="#!"><img class="card-img-top" src="{{post.head_image.url}}" alt=""/></a>
+                        {% else %}
+                            <a href="#!"><img class="card-img-top" src="https://picsum.photos/1000/1000" alt="random_image"></a>
+                        {% endif %}
                         <!-- Post content-->
                         <p>{{post.content}}</p>
                     </article>
