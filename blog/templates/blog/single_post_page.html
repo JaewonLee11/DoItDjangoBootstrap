@@ -50,7 +50,7 @@
       </div>
     </nav>
         <!-- Page content-->
-        <div class="container mt-5">
+        <div class="container mt-5" id="main-area">
             <div class="row">
                 <div class="col-lg-8">
                     <!-- Post content-->
@@ -58,7 +58,7 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1">{{post.title}}</h1>
+                            <h1 class="fw-bolder mb-1" id="post-area">{{post.title}}</h1>
                             {% if post.hook_text %}
                                 <h5 class="text-muted">{{post.hook_text}}</h5>
                             {% endif %}
