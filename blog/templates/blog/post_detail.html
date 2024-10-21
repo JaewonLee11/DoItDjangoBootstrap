@@ -15,6 +15,11 @@
                         <header class="mb-4">
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1">{{post.title}}</h1>
+                            {#author#}
+                            <p class="lead">
+                                by
+                                <a href="#">{{ post.author | upper }}</a>
+                            </p>
                             {% if post.hook_text %}
                                 <h5 class="text-muted">{{post.hook_text}}</h5>
                             {% endif %}
@@ -31,21 +36,23 @@
                         <p>{{post.content}}</p>
 
                         {% if post.file_upload %}
-                        <button type="button" class="btn btn-primary" href="{{ post.file_upload.url">Download:
-                        {% if post.get_file_ext == 'csv' %}
-                            <i class="fa-solid fa-file-csv"></i>
-                        {% elif post.get_file_ext == 'txt' %}
-                            <i class="fa-solid fa-file-lines"></i>
-                        {% elif post.get_file_ext == 'doc' or post.get_file_ext == 'docx' %}
-                            <i class="fa-solid fa-file-word"></i>
-                        {% elif post.get_file_ext == 'xls' or post.get_file_ext == 'xlsx' %}
-                            <i class="fa-solid fa-file-excel"></i>
-                        {% elif post.get_file_ext == 'pdf' %}
-                            <i class="fa-solid fa-file-pdf"></i>
-                        {% else %}
-                            <i class="fa-solid fa-file"></i>
-                        {% endif%}
-                        {{ post.get_file_name }}</button>
+                            <a role="button" class="btn btn-outline-dark" href="{{ post.file_upload.url }}">
+                              Download:
+                                {% if post.get_file_ext == 'csv' %}
+                                    <i class="fa-solid fa-file-csv"></i>
+                                {% elif post.get_file_ext == 'txt' %}
+                                    <i class="fa-solid fa-file-lines"></i>
+                                {% elif post.get_file_ext == 'doc' or post.get_file_ext == 'docx' %}
+                                    <i class="fa-solid fa-file-word"></i>
+                                {% elif post.get_file_ext == 'xls' or post.get_file_ext == 'xlsx' %}
+                                    <i class="fa-solid fa-file-excel"></i>
+                                {% elif post.get_file_ext == 'pdf' %}
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                {% else %}
+                                    <i class="fa-solid fa-file"></i>
+                                    </a>
+                                {% endif%}
+                        {{ post.get_file_name }}
                         {% endif %}
                     </div>
 
