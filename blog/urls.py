@@ -6,5 +6,6 @@ urlpatterns = [
     path('', views.PostListView.as_view()),
     # path('<int:pk>/', views.single_post_page), ->
     path('<int:pk>/', views.PostDetailView.as_view()),
+    path('category/<str:slug>/', views.category_page),
 
 ]
