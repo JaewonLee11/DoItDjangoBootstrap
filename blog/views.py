@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Category
 from django.views.generic import ListView, DetailView
 
 
@@ -19,9 +19,13 @@ from django.views.generic import ListView, DetailView
 
 class PostListView(ListView):
     model = Post
+    ordering = '-pk'
 
-
-
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = Post.objects.filter(category=None).count()
+        return context
 
 #
 # def single_post_page(request, pk):
