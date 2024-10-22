@@ -40,9 +40,7 @@ class Post(models.Model):
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     # 작성자가 삭제되면 포스트의 작성자명을 빈칸으로 둠
     author=models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-
     category=models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
-
     tags=models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
