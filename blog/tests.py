@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from django.test import TestCase, Client
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Comment
 from django.contrib.auth.models import User
 
 class TestView(TestCase):
@@ -41,6 +41,12 @@ class TestView(TestCase):
 
         self.post_003.tags.add(self.tag_python_kor)
         self.post_003.tags.add(self.tag_python)
+
+        self.comment_001 = Comment.objects.create(
+            post=self.post_001,
+            author=self.user_obama,
+            content='첫번째 댓글입니다'
+        )
 
     def test_create_post(self):
         # 로그인하지 않으면 status code가 200이 되서는 안된다.
@@ -245,6 +251,12 @@ class TestView(TestCase):
         self.assertIn(self.tag_hello.name, post_area.text)
         self.assertNotIn(self.tag_python.name, post_area.text)
         self.assertNotIn(self.tag_python_kor.name, post_area.text)
+
+        #comment area
+        comments_area = soup.find('div', id='comments-area')
+        comments_001_area = comments_area.find('div', id='comment-1')
+        self.assertIn(self.comment_001.author.username, comments_001_area.text)
+        self.assertIn(self.comment_001.content, comments_001_area.text)
 
     def test_category_page(self):
         response = self.client.get(self.category_programming.get_absolute_url())
