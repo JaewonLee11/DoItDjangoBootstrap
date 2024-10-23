@@ -44,7 +44,7 @@
                         <img class="card-img-top" src="https://picsum.photos/1000/1000" alt="random_image">
                     {% endif %}
                     <!-- Post content-->
-                    <p>{{post.content}}</p>
+                    <p>{{post.get_content_markdown | safe}}</p>
 
                     {% if post.tags.exists %}
                     <i class="fa-solid fa-tag"></i>
